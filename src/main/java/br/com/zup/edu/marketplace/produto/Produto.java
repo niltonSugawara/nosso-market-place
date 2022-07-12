@@ -1,4 +1,4 @@
-package br.com.zup.edu.marketplace.model;
+package br.com.zup.edu.marketplace.produto;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,10 +14,6 @@ public class Produto {
 
     @Column(nullable = false)
     private String descricao;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private StatusProduto status=StatusProduto.PENDENTE;
 
     @Column(nullable = false)
     private BigDecimal preco;
@@ -37,5 +33,17 @@ public class Produto {
 
     public Long getId() {
         return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
     }
 }
