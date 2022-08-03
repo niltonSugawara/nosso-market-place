@@ -1,20 +1,23 @@
 package br.com.zup.edu.marketplace.promocao;
 
 import br.com.zup.edu.marketplace.produto.ProdutoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/promocoes")
 public class PromocaoController {
 
-    @Autowired
-    public PromocaoRepository promocaoRepository;
+    Logger logger = LoggerFactory.getLogger(PromocaoController.class);
 
     @Autowired
-    public ProdutoRepository produtoRepository;
+    private PromocaoRepository promocaoRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -23,6 +26,8 @@ public class PromocaoController {
         var promocao = promocaoRequest.toModel(produtoRepository);
 
         promocaoRepository.save(promocao);
+
+        logger.info(" Promoção de id {} cadastrada com sucesso ", promocao.getId());
 
         return PromocaoResponse.of(promocao);
     }
