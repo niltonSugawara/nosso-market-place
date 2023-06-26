@@ -46,4 +46,14 @@ public class Produto {
     public BigDecimal getPreco() {
         return preco;
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                '}';
+    }
 }

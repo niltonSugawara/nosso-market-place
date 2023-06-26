@@ -19,6 +19,9 @@ public class PromocaoController {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private PromocaoNovaProducer promocaoNovaProducer;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public PromocaoResponse incluir(@RequestBody PromocaoRequest promocaoRequest){
@@ -26,6 +29,8 @@ public class PromocaoController {
         var promocao = promocaoRequest.toModel(produtoRepository);
 
         promocaoRepository.save(promocao);
+
+        promocaoNovaProducer.enviar(promocao);
 
         logger.info(" Promoção de id {} cadastrada com sucesso ", promocao.getId());
 

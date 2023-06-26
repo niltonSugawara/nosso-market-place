@@ -59,4 +59,16 @@ public class Promocao {
     public String getRegras() {
         return regras;
     }
+
+    @Override
+    public String toString() {
+        return "Promocao{" +
+                "id=" + id +
+                ", produto=" + produto +
+                ", inicio=" + inicio +
+                ", fim=" + fim +
+                ", valor=" + valor +
+                ", regras='" + regras + '\'' +
+                '}';
+    }
 }
